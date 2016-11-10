@@ -1,8 +1,10 @@
 -- love.load() is called every time the game restarts
 function love.load()
 
-	playingAreaWidth = 300
-	playingAreaHeight = 388
+	love.keyboard.setKeyRepeat(true)
+
+	love.window.setMode(1000, 1000)
+	playingAreaWidth, playingAreaHeight = love.graphics.getDimensions()
 
 	-- bird object with coordinates, speed, and size
 	bird = {
@@ -54,7 +56,7 @@ function love.update(dt)
 
 	-- movePipe(x, y) updates the position of the pipe
 	local function movePipe(pipeX, pipeSpaceY)
-		pipeX = pipeX - (60 * dt)
+		pipeX = pipeX - ((60 + score * 4) * dt)
 
 		if (pipeX + pipeWidth) < 0 then
 			pipeX = playingAreaWidth
